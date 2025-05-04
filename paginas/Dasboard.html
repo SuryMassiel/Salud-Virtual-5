@@ -28,15 +28,32 @@
       
       
     <main>
+    
+    <h1>Gráficos de Solicitud de Citas Pediátricas</h1>
 
-        <h1>Estadísticas de Pacientes</h1>
-        <div class="contenedor-barras">
-          <canvas id="graficoPacientes" width="600" height="400"></canvas>
-        </div>
-        <h1>Pacientes con citas por día</h1>
-        <div class="contenedor-pastel">
-          <canvas id="graficoPastel" width="400" height="400"></canvas>
-        </div>
+    <div class="chart-container">
+        <h2>Solicitudes de Citas por Semana, Mes y Año</h2>
+        <canvas id="citasChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>Promedio de Niños Mayores de 10 Años</h2>
+        <canvas id="mayoresChart"></canvas>
+    </div>
+
+
+    <div class="chart-container">
+        <h2>Total de Niños Menores de 10 Años</h2>
+        <canvas id="menoresChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>Pacientes: Rural vs Ciudad</h2>
+        <canvas id="ubicacionChart"></canvas>
+    </div>
+
+
+
    </main>
 
 
@@ -65,7 +82,8 @@
           <p>&copy; 2025 Hospital Pediátrico - Pequeños Héroes - Salud Virtual. Todos los derechos reservados.</p>
         </div>
       </footer>
-      
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <script src="../JS/scripts.js"></script>
 </body>
 

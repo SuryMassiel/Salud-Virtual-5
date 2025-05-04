@@ -212,89 +212,114 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   
 
-  /**/ 
-const canvas = document.getElementById("graficoPacientes");
-const ctx = canvas.getContext("2d");
-
-const datos = [
-  { label: "Total Pacientes", valor: 1500, color: "#4caf50" },
-  { label: "Registrados este mes", valor: 250, color: "#2196f3" },
-  { label: "Menores de 10 años", valor: 560, color: "#ff9800" }
-];
-
-const maxValor = Math.max(...datos.map(d => d.valor));
-const chartHeight = 300;
-const barWidth = 100;
-const spacing = 50;
-const baseX = 50;
-const baseY = 350;
-
-// Ejes
-ctx.beginPath();
-ctx.moveTo(baseX, 50);
-ctx.lineTo(baseX, baseY);
-ctx.lineTo(canvas.width - 30, baseY);
-ctx.strokeStyle = "#000";
-ctx.lineWidth = 2;
-ctx.stroke();
-
-// Dibujar barras
-datos.forEach((d, i) => {
-  const barHeight = (d.valor / maxValor) * chartHeight;
-  const x = baseX + spacing + i * (barWidth + spacing);
-  const y = baseY - barHeight;
-
-  // Barra
-  ctx.fillStyle = d.color;
-  ctx.fillRect(x, y, barWidth, barHeight);
-
-  // Etiqueta numérica
-  ctx.fillStyle = "#000";
-  ctx.font = "14px Arial";
-  ctx.fillText(d.valor, x + 20, y - 20);
-
-  // Etiqueta debajo
-  ctx.fillText(d.label, x - 0, baseY + 20);
+/*dashboard*/
+const ctxCitas = document.getElementById('citasChart').getContext('2d');
+const citasChart = new Chart(ctxCitas, {
+    type: 'bar',
+    data: {
+        labels: ['Semana', 'Mes', 'Año'],
+        datasets: [{
+            label: 'Solicitudes de Citas',
+            data: [60, 260, 3120], // Datos de ejemplo
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
 });
 
-const canvasCitas = document.getElementById('graficoPastel');
-const ctxCitas = canvasCitas.getContext('2d');
-
-// Datos ficticios de pacientes por día
-const datosCitas = [
-  { label: "Lunes", valor: 120, color: "#4caf50" },
-  { label: "Miércoles", valor: 80, color: "#2196f3" },
-  { label: "Viernes", valor: 60, color: "#ff9800" }
-];
-
-// Total de pacientes
-const totalCitas = datosCitas.reduce((sum, d) => sum + d.valor, 0);
-
-// Dibujar gráfico de pastel
-let inicioAngulo = 0;
-datosCitas.forEach(d => {
-  const angulo = (d.valor / totalCitas) * 2 * Math.PI;
-  ctxCitas.beginPath();
-  ctxCitas.moveTo(200, 200);
-  ctxCitas.arc(200, 200, 150, inicioAngulo, inicioAngulo + angulo);
-  ctxCitas.closePath();
-  ctxCitas.fillStyle = d.color;
-  ctxCitas.fill();
-  inicioAngulo += angulo;
+const ctxMayores = document.getElementById('mayoresChart').getContext('2d');
+const mayoresChart = new Chart(ctxMayores, {
+    type: 'line',
+    data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        datasets: [{
+            label: 'Promedio de Niños Mayores de 10 Años',
+            data: [10, 15, 8, 20, 12], // Datos de ejemplo
+            backgroundColor: 'rgba(153, 102, 255, 0.6)',
+            borderColor: 'rgba(153, 102, 255, 1)',
+            borderWidth: 2,
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
 });
 
-// Dibujar etiquetas
-inicioAngulo = 0;
-datosCitas.forEach(d => {
-  const angulo = (d.valor / totalCitas) * 2 * Math.PI;
-  const medio = inicioAngulo + angulo / 2;
-  const x = 200 + Math.cos(medio) * 100;
-  const y = 200 + Math.sin(medio) * 100;
 
-  ctxCitas.fillStyle = "#000";
-  ctxCitas.font = "15px Arial";
-  ctxCitas.textAlign = "center";
-  ctxCitas.fillText(`${d.label}: ${d.valor}`, x, y);
 
-  inicioAngulo += angulo;
+const ctxMenores = document.getElementById('menoresChart').getContext('2d');
+const menoresChart = new Chart(ctxMenores, {
+    type: 'line',
+    data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        datasets: [{
+            label: 'Total de Niños Menores de 10 Años',
+            data: [12, 14, 20, 16, 11], // Datos de ejemplo
+            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1,
+            fill: true
+        }] 
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const ctxUbicacion = document.getElementById('ubicacionChart').getContext('2d');
+const ubicacionChart = new Chart(ctxUbicacion, {
+    type: 'pie',
+    data: {
+        labels: ['Rural', 'Ciudad'],
+        datasets: [{
+            label: 'Distribución de Pacientes',
+            data: [75, 63], // Datos de ejemplo sobre los apciente rurles o de ciudad
+            backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)'],
+            borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true
+            }
+        }
+    }
 });
