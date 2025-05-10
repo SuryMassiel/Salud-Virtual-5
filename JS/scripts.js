@@ -61,12 +61,12 @@ if (pacienteForm) {
     generarCodigoPaciente(); // Generar código de paciente automáticamente
 
     pacienteForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita el envío del formulario por defecto
+        event.preventDefault();
         if (pacienteForm.checkValidity()) {
             agregarPacienteATabla();
             alert('Paciente registrado correctamente.');
-            pacienteForm.reset(); // Reiniciar el formulario
-            generarCodigoPaciente(); // Generar un nuevo código de paciente
+            pacienteForm.reset(); 
+            generarCodigoPaciente(); 
         } else {
             alert('Por favor, complete todos los campos requeridos.');
         }
@@ -147,6 +147,8 @@ function ajustarMargenFooter() {
             <td>${paciente.alergias}</td>
             <td>
                 <button class="editar-btn" onclick="editarFila(${index})">Editar</button>
+            </td>
+            <td>
                 <button class="eliminar-btn" onclick="eliminarFila(${index})">Eliminar</button>
             </td>
         `;
@@ -165,8 +167,7 @@ function editarFila(index) {
     let pacientes = JSON.parse(localStorage.getItem('pacientes')) || [];
     const paciente = pacientes[index]; // Obtener el paciente a editar
 
-    // Aquí puedes implementar la lógica para editar el paciente
-    // Por ejemplo, abrir un formulario con los datos del paciente
+    // la lógica para editar el paciente(incompleto!!!!)
     const nuevoNombre = prompt("Editar Primer Nombre:", paciente.primerNombre);
     if (nuevoNombre !== null && nuevoNombre !== "") {
         paciente.primerNombre = nuevoNombre; // Actualizar el nombre
@@ -185,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Obtener pacientes existentes
         let pacientes = JSON.parse(localStorage.getItem('pacientes')) || [];
   
-        // Generar código automático (ejemplo: P0001, P0002...)
+        // Generar código automático
         const nuevoCodigo = 'P' + String(pacientes.length + 1).padStart(4, '0');
   
         // Capturar datos del formulario
@@ -220,7 +221,7 @@ const citasChart = new Chart(ctxCitas, {
         labels: ['Semana', 'Mes', 'Año'],
         datasets: [{
             label: 'Solicitudes de Citas',
-            data: [60, 260, 3120], // Datos de ejemplo
+            data: [60, 260, 3120], 
             backgroundColor: 'rgba(75, 192, 192, 0.6)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
@@ -248,7 +249,7 @@ const mayoresChart = new Chart(ctxMayores, {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
         datasets: [{
             label: 'Promedio de Niños Mayores de 10 Años',
-            data: [10, 15, 8, 20, 12], // Datos de ejemplo
+            data: [10, 15, 8, 20, 12], 
             backgroundColor: 'rgba(153, 102, 255, 0.6)',
             borderColor: 'rgba(153, 102, 255, 1)',
             borderWidth: 2,
@@ -279,7 +280,7 @@ const menoresChart = new Chart(ctxMenores, {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
         datasets: [{
             label: 'Total de Niños Menores de 10 Años',
-            data: [12, 14, 20, 16, 11], // Datos de ejemplo
+            data: [12, 14, 20, 16, 11], 
             backgroundColor: 'rgba(255, 99, 132, 0.6)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1,
@@ -308,7 +309,7 @@ const ubicacionChart = new Chart(ctxUbicacion, {
         labels: ['Rural', 'Ciudad'],
         datasets: [{
             label: 'Distribución de Pacientes',
-            data: [75, 63], // Datos de ejemplo sobre los apciente rurles o de ciudad
+            data: [75, 63],
             backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)'],
             borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
             borderWidth: 1
@@ -323,3 +324,5 @@ const ubicacionChart = new Chart(ctxUbicacion, {
         }
     }
 });
+
+

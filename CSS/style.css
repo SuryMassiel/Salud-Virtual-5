@@ -6,63 +6,81 @@ body {
   background-color: #f0f8ff;
 }
 
-.menu-container {
 
-  display: flex;
-  text-align: center;
-  flex-direction: column; /* Cambia la orientación a vertical */
-  position: fixed; /* Fija el menú en un lugar de la ventana */
-  left: 0; /* Posición horizontal (izquierda) */
-  top: 0; /* Posición vertical (arriba) */
-  height: 100%; /* Ocupa toda la altura de la ventana */
-  background-color: #ffffff; /* Fondo para diferenciar el menú */
-  padding: 10px;
+/* Botón tipo hamburguesa */
+.toggle-button {
+  position: fixed;
+  top: 15px;
+  left: 5px; /* posición por defecto (cerrado) */
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+  background-color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
 }
 
+/* Ocultar checkbox */
+#menu-toggle {
+  display: none;
+}
+
+/* Menú lateral oculto por defecto */
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: -300px; /* Oculto */
+  top: 0;
+  height: 100%;
+  width: 190px;
+  background-color: #ffffff;
+  padding: 10px;
+  gap: 10px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+/* ✅ Cuando el menú está abierto */
+#menu-toggle:checked ~ .menu-container {
+  left: 0;
+}
+
+/* ✅ Mover el botón cuando el menú está abierto */
+#menu-toggle:checked ~ .toggle-button {
+  left: 210px; /* Ancho del menú (200px) + 15px de margen */
+}
+
+/* Botones */
 button {
   color: rgb(16, 66, 41);
   font-weight: bolder;
   border: none;
-  font-size: 13px;
+  font-size: 11px;
   text-align: center;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-} 
-
-button:hover {
-  background-color: #c1c1c1;
-  color:#104b49
-}
-
-
-.menu-container {
-  display: flex;
-  gap: 10px;
 }
 
 .menu-button {
-  text-align: center;
   font-size: 14px;
   color: rgb(32, 43, 39);
   font-weight: bold;
-  border: none;
   padding: 10px;
-  background: #09705100;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  background: transparent;
   text-align: left;
   width: 100%;
 }
 
-
-main {
-  margin-top: 0px;
-  padding: 20px;
-  margin-left: 200px;
+.menu-button:hover {
+  background-color: #c1c1c1;
+  color: #104b49;
 }
+
 
 
 /* Logo */
@@ -70,6 +88,8 @@ main {
   display: flex;
   align-items: center; 
   justify-content: space-between;
+  margin-left: 5px;
+  margin-right: 5px;
   background-color: #ffffff; 
   padding: 20px; 
   border-radius: 10px;
@@ -178,12 +198,12 @@ main {
 }
 
 .formpaciente-column {
-  flex: 1; /* Asegura que ambas columnas ocupen el mismo espacio */
+  flex: 1; 
   margin-right: 10px; /* Espacio entre columnas */
 }
 
 .formpaciente-column:last-child {
-  margin-right: 10px; /* Elimina el margen derecho para la última columna */
+  margin-right: 10px; 
 }
 
 
@@ -228,6 +248,8 @@ select {
   display: flex; 
   justify-content: space-between; 
   margin-top: 10px; /* Espacio entre el logo y los contenedores */
+  margin-left: 20px;
+  margin-right: 10px;
 }
 
 .infoM-container,
@@ -260,7 +282,7 @@ select {
 }
 
 .infoVV-container h3 {
-  text-align: center; /* Título centrado */
+  text-align: center; 
   color: #333; 
   margin-bottom: 15px; /* Espacio debajo del título */
 }
@@ -328,10 +350,10 @@ select {
 
 /*TAMANIO DE IMAGENES TIPO ICONO PARA VALORES, MISION Y VISION*/
 .icono-titulo {
-  width: 24px; /* Ajusta el tamaño del ícono */
-  height: auto; /* Mantiene la proporción */
-  margin-right: 4px; /* Espacio entre el ícono y el texto */
-  vertical-align: middle; /* Alineación vertical */
+  width: 24px; 
+  height: auto; 
+  margin-right: 4px; 
+  vertical-align: middle; 
 }
 
 
@@ -358,9 +380,9 @@ select {
 }
 
 .servicio-card {
-  background-color: #ffffff; /* Fondo blanco */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+  background-color: #ffffff; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
   padding: 20px;
   margin-top: 50px;
   width: calc(30% - 20px); /* Ancho de las tarjetas (3 en fila) */
@@ -368,35 +390,36 @@ select {
 }
 
 .servicio-card:hover {
-  transform: translateY(-5px); /* Elevar la tarjeta al pasar el mouse */
+  transform: translateY(-5px); 
 }
 
 
 
 h3 {
-  color: #105f55; /* Color del título */
-  margin-top: 0; /* Sin margen superior */
+  color: #105f55; 
+  margin-top: 0; 
 }
+
 /*del contenedor de Bienvenida*/
 p {
   color: #020000; /* Color del texto */
 }
 
 ul {
-  list-style-type: disc; /* Puntos en la lista */
-  padding-left: 20px; /* Espacio a la izquierda para los puntos */
-  margin-top: 10px; /* Espacio arriba de la lista */
+  list-style-type: disc; 
+  padding-left: 20px;
+  margin-top: 10px;
 }
 
 li {
-  margin-bottom: 5px; /* Espacio entre elementos de la lista */
+  margin-bottom: 5px; 
 
 }
 
 .servicio-icon {
-  width: 20px; /* Ajusta el tamaño de la imagen */
-  height: auto; /* Mantiene la proporción */
-  vertical-align: middle; /* Alinea verticalmente con el texto */
+  width: 20px; 
+  height: auto; 
+  vertical-align: middle; 
   margin-right: 8px; /* Espacio entre la imagen y el texto */
 }
 
@@ -446,11 +469,11 @@ main.shifted .content {
 
 footer {
   margin-left: 185px; /* Alinea el pie de página al lado del menú */
-  padding: 40px; /* Espacio interno para que se vea mejor */
-  background-color: #f4f4f4; /* Color de fondo, opcional */
+  padding: 40px; 
+  background-color: #f4f4f4; 
   text-align: center; /* Centrar contenido del pie de página */
   position: relative;
-  margin-left: 205px;
+  margin-left: 0px;
 }
 
 .footer-contacto p {
@@ -491,13 +514,13 @@ footer {
 }
 
 .divider {
-  height: 2px; /* Altura de la línea divisoria */
+  height: 2px; 
   background-color: white; 
-  margin: 10px 0; /* Espacio alrededor de la línea */
+  margin: 10px 0; 
 }
 
 .logo-section {
-  margin-top: 10px; /* Espacio adicional para el logo */
+  margin-top: 10px; 
   text-align: center;
 }
 
@@ -534,6 +557,8 @@ footer {
 
 .footer-bottom {
   text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
   padding: 10px 0; /* Espaciado arriba y abajo */
   font-size: 14px; 
   bottom: 0;
@@ -541,13 +566,15 @@ footer {
 }
 
 
-
+/*fondo contendor blanco*/
 .content {
   display: flex;
   align-items: stretch;
   flex-direction: column;
-  margin: 0px;
+  margin: 30px auto;
   padding: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -574,31 +601,7 @@ footer {
 
 
 
-/* === MENU RESPONSIVE === */
-@media (max-width: 768px) {
-  .menu-container {
-    position: static;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    height: auto;
-    padding: 10px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    z-index: 1000;
-  }
 
-  main {
-    margin-left: 0px;
-    margin-top: 0px; /* espacio para el menú arriba */
-    padding: 10px;
-  }
-
-  footer {
-    margin-left: 5px;
-  }
-  
-}
 
 
 /* === GRIDS FLEXIBLES === */
@@ -703,14 +706,14 @@ footer {
 /* Estilo para pantallas pequeñas y tabletas (mini iPad) */
 @media (max-width: 768px) {
   table {
-    width: 90%; /* Aumentar el ancho de la tabla al 90% */
-    margin: 10px auto; /* Centrar la tabla */
+    width: 90%; 
+    margin: 10px auto; 
   }
 
   th, td {
-    padding: 8px; /* Aumentar el padding para mayor comodidad */
-    font-size: 12px; /* Tamaño de fuente ajustado */
-    max-width: 100px; /* Ancho máximo para celdas */
+    padding: 8px; 
+    font-size: 12px; 
+    max-width: 100px; 
     word-wrap: break-word; /* Ajustar texto largo */
   }
 }
@@ -730,49 +733,50 @@ footer {
 
 
 .eliminar-btn {
-  background-color: #d9534f; /* Color de fondo rojo */
-  color: white; /* Color del texto */
-  border: none; /* Sin borde */
-  padding: 5px 10px; /* Espaciado interno */
+  background-color: #d9534f; 
+  color: white; 
+  border: none; 
+  padding: 5px 10px; 
   padding-bottom: 5px;
   margin-right: 10px;
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar el ratón */
-  font-size: 10px; /* Tamaño de fuente */
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 10px;
   transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
 }
 
 .eliminar-btn:hover {
-  background-color: #c9302c; /* Color de fondo más oscuro al pasar el ratón */
+  background-color: #c9302c; 
   transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
 }
 
 .eliminar-btn:focus {
-  outline: none; /* Sin contorno al hacer clic */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra al hacer*/}
+  outline: none; 
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
+}
 
 
   
 
 .editar-btn {
   background-color: #168771; 
-  color: white; /* Color del texto */
-  border: none; /* Sin borde */
-  padding: 5px 15px; /* Espaciado interno */
+  color: white;
+  border: none; 
+  padding: 5px 15px; 
   margin-right: 10px;
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar el ratón */
-  font-size: 10px; /* Tamaño de fuente */
+  border-radius: 5px;
+  cursor: pointer; 
+  font-size: 10px;
   transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
 }
 
 .editar-btn:hover {
-  background-color: #709683; /* Color de fondo más oscuro al pasar el ratón */
+  background-color: #709683;
   transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
 }
 
 .editar-btn:focus {
-  outline: none; /* Sin contorno al hacer clic */
+  outline: none; 
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra al hacer*/}
 
 
@@ -822,7 +826,7 @@ footer {
   }
 
   .content {
-    margin-left: 0;
+    margin: auto;
     padding: 10px;
   }
 
@@ -837,7 +841,6 @@ footer {
 
 
 
-
 /*FORMULARIO DE REGISTRAR PACIENTE*/
 #registrarp {
   padding: 20px;
@@ -846,6 +849,7 @@ footer {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   max-width: 1000px;
   margin: 30px auto;
+  margin-top: 25px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -924,30 +928,6 @@ footer {
 }
 
 
-/* === MENU RESPONSIVE === */
-@media (max-width: 768px) {
-  .menu-container {
-    position: static;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    height: auto;
-    padding: 10px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    z-index: 1000;
-  }
-
-  main {
-    margin-left: 0;
-    margin-top: 0px; /* espacio para el menú arriba */
-    padding: 10px;
-  }
-
-  footer {
-    margin-left: 0;
-  }
-}
 
 /* Grid de 2 columnas */
 .form-grid {
@@ -1079,6 +1059,15 @@ tr:hover {
   margin-right: 12px;
 }
 
+.btn-delete {
+  background-color: #c52c24;
+  color: white;
+  border: none;
+  padding: 6px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .btn-edit {
   background-color: #e6d554;
   color: white;
@@ -1098,13 +1087,13 @@ table tr td:nth-child(8) { /* Ajusta el número según la posición de la column
   }
 
   table {
-    font-size: 12px; /* Tamaño de fuente más pequeño */
+    font-size: 12px;
     display: block; /* Hacer que la tabla sea un bloque para permitir el desplazamiento */
-    overflow-x: auto; /* Permitir desplazamiento horizontal */
+    overflow-x: auto; /* desplazamiento horizontal */
   }
   
   th, td {
-    padding: 4px; /* Reducir padding en pantallas pequeñas */
+    padding: 4px; 
     max-width: 80px; /* Ancho máximo para celdas */
   }
 }
